@@ -15,7 +15,7 @@
 size = Vector2(32, 1996)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkyk6"]
-size = Vector2(813, 36)
+size = Vector2(813, 375)
 
 [node name="BoulderDash" type="Node2D"]
 
@@ -145,7 +145,7 @@ collision_layer = 2
 script = ExtResource("10_kabln")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverZone" groups=["OutZone"]]
-position = Vector2(-2.5, -310)
+position = Vector2(-2.5, -140.5)
 shape = SubResource("RectangleShape2D_tkyk6")
 
 [connection signal="timeout" from="RockSpawner/Timer" to="RockSpawner" method="_on_timer_timeout"]
