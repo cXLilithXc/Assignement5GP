@@ -55,8 +55,8 @@ func _on_damage_body_entered(body: Node2D) -> void:
 	take_damage()
 
 
+
 func take_damage():
-	print("Take Damage")
 	if is_invincible:
 		return
 
@@ -64,11 +64,19 @@ func take_damage():
 	is_invincible = true
 
 	print("Player took damage! Health: ", health)
+	emit_signal("health_changed", health)
 
-	# Optional: Play sound or flash animation here
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1, 0.5, 0.5), 0.1)
-	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.1)
+	# Blink the player when they take damage
+	blink()
 
-	await get_tree().create_timer(3).timeout
+	# Wait for 3 seconds to restore invincibility
+	await get_tree().create_timer(3.0).timeout
 	is_invincible = false
+
+
+func blink():
+	for i in range(3):  
+		animatedSprite.visible = false
+		await get_tree().create_timer(0.1).timeout
+		animatedSprite.visible = true
+		await get_tree().create_timer(0.1).timeout
