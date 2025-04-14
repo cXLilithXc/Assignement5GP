@@ -33,7 +33,11 @@ func _physics_process(delta):
 func _process(delta):
 	animate()
 	flip()
-	
+	if health <= 0:
+		emit_signal("game_over")
+		print("Game Over!")
+		get_tree().change_scene_to_file("res://Scenes/GameOver.tscn")
+		return
 func animate():
 	if not is_on_floor():
 		animatedSprite.play("jump")	
@@ -62,20 +66,16 @@ func take_damage():
 
 	health -= 1
 	is_invincible = true
-
 	print("Player took damage! Health: ", health)
 	emit_signal("health_changed", health)
-
-	# Blink the player when they take damage
 	blink()
-
-	# Wait for 3 seconds to restore invincibility
 	await get_tree().create_timer(3.0).timeout
 	is_invincible = false
 
 
+
 func blink():
-	for i in range(3):  
+	for i in range(10):  
 		animatedSprite.visible = false
 		await get_tree().create_timer(0.1).timeout
 		animatedSprite.visible = true
