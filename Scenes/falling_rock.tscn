@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dg6cnnpg01n41" path="res://Scripts/FallingRock.gd" id="1_oo0j7"]
 [ext_resource type="Texture2D" uid="uid://dhbi8si5ms7tm" path="res://Assets/Rock.png" id="2_gga31"]
 
-[node name="FallingRock" type="RigidBody2D"]
+[node name="FallingRock" type="RigidBody2D" groups=["FallingRocks"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_oo0j7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
