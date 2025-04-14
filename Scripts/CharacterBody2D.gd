@@ -60,6 +60,8 @@ func _on_damage_body_entered(body: Node2D) -> void:
 
 
 
+
+
 func take_damage():
 	if is_invincible:
 		return
