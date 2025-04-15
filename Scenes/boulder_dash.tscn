@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6idknklacj8v"]
+[gd_scene load_steps=24 format=3 uid="uid://b6idknklacj8v"]
 
 [ext_resource type="Texture2D" uid="uid://beljn1w1haf1q" path="res://Assets/Tile_02.png" id="1_chi5k"]
 [ext_resource type="Texture2D" uid="uid://c2e8rg04pnrhi" path="res://Assets/Free-Mountain-Backgrounds-Pixel-Art9.png" id="2_fa256"]
@@ -15,10 +15,40 @@
 [ext_resource type="Texture2D" uid="uid://yax4b6flqnfm" path="res://Assets/third hit.png" id="8_q463n"]
 [ext_resource type="Theme" uid="uid://d213qxnwhb3cj" path="res://Fonts/title_theme.tres" id="10_j6osf"]
 [ext_resource type="Script" uid="uid://kho87xuiw04i" path="res://Scripts/game_over_zone.gd" id="10_kabln"]
+[ext_resource type="Texture2D" uid="uid://hwxu1ctsvbhi" path="res://Assets/Character/Hurt.png" id="13_a077b"]
 [ext_resource type="PackedScene" uid="uid://bu88b26kcp1pp" path="res://Scenes/health_potion.tscn" id="16_nrhpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6a4y"]
 size = Vector2(32, 1996)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q463n"]
+atlas = ExtResource("13_a077b")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlvex"]
+atlas = ExtResource("13_a077b")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83la7"]
+atlas = ExtResource("13_a077b")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0dfq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q463n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlvex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83la7")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkyk6"]
 size = Vector2(813, 36)
@@ -151,6 +181,12 @@ region_rect = Rect2(0, 0, 2000, 32)
 
 [node name="MainCharacter" parent="." instance=ExtResource("3_x35cg")]
 position = Vector2(3, 14)
+
+[node name="hurt" type="AnimatedSprite2D" parent="MainCharacter"]
+visible = false
+position = Vector2(8, -26)
+sprite_frames = SubResource("SpriteFrames_s0dfq")
+animation = &"blink"
 
 [node name="HealthPotion" parent="MainCharacter" instance=ExtResource("16_nrhpg")]
 visible = false

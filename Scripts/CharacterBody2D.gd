@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var health_bar = get_parent().get_node("Camera2D/HealthBar")
+@onready var blink_effect = $hurt
 var health := 4
 var is_invincible := false
 const SPEED = 300.0
@@ -80,14 +81,15 @@ func take_damage():
 	is_invincible = false
 
 
-
 func blink():
-	for i in range(10):  
-		animatedSprite.visible = false
-		await get_tree().create_timer(0.1).timeout
-		animatedSprite.visible = true
-		await get_tree().create_timer(0.1).timeout
-		
+	print("blink")
+	animatedSprite.visible = false
+	blink_effect.visible = true
+	blink_effect.play("blink")
+	await get_tree().create_timer(3.0).timeout
+	blink_effect.stop()
+	blink_effect.visible = false
+	animatedSprite.visible = true
 
 func update_health_bar():
 	# Hide all damage states
