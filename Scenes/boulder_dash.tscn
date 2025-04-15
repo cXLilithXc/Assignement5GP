@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6idknklacj8v"]
+[gd_scene load_steps=18 format=3 uid="uid://b6idknklacj8v"]
 
 [ext_resource type="Texture2D" uid="uid://beljn1w1haf1q" path="res://Assets/Tile_02.png" id="1_chi5k"]
 [ext_resource type="Texture2D" uid="uid://c2e8rg04pnrhi" path="res://Assets/Free-Mountain-Backgrounds-Pixel-Art9.png" id="2_fa256"]
@@ -6,9 +6,13 @@
 [ext_resource type="Script" uid="uid://msx4c7k0vbg1" path="res://Scripts/RockSpawner.gd" id="4_6li3k"]
 [ext_resource type="Texture2D" uid="uid://b2yh6uyeyv3ma" path="res://Assets/Tile_30.png" id="4_iqrwy"]
 [ext_resource type="Script" uid="uid://c1vgog3tajosk" path="res://Scenes/Camera2D.gd" id="4_n5s3k"]
+[ext_resource type="Texture2D" uid="uid://d3qjw810hlikf" path="res://Assets/full health.png" id="5_0t2dc"]
 [ext_resource type="Texture2D" uid="uid://k7n7td2fclyg" path="res://Assets/Tile_14.png" id="5_qtvwi"]
+[ext_resource type="Texture2D" uid="uid://bv4i4lxlao136" path="res://Assets/first Hit.png" id="6_nrhpg"]
 [ext_resource type="Script" uid="uid://dcyeippakttcv" path="res://Scenes/high_score.gd" id="7_7btox"]
+[ext_resource type="Texture2D" uid="uid://rf7rml4857us" path="res://Assets/second hit.png" id="7_a077b"]
 [ext_resource type="Script" uid="uid://dvwouitn2jr0e" path="res://Scenes/FloorSpawner.gd" id="7_qkw54"]
+[ext_resource type="Texture2D" uid="uid://yax4b6flqnfm" path="res://Assets/third hit.png" id="8_q463n"]
 [ext_resource type="Theme" uid="uid://d213qxnwhb3cj" path="res://Fonts/title_theme.tres" id="10_j6osf"]
 [ext_resource type="Script" uid="uid://kho87xuiw04i" path="res://Scripts/game_over_zone.gd" id="10_kabln"]
 
@@ -56,6 +60,28 @@ position = Vector2(400, -4)
 
 [node name="FloorSpawnerYPosition" type="Node2D" parent="Camera2D"]
 position = Vector2(-1, 321)
+
+[node name="HealthBar" type="Node2D" parent="Camera2D"]
+z_index = 20
+
+[node name="4" type="Sprite2D" parent="Camera2D/HealthBar"]
+position = Vector2(-377.5, 88)
+texture = ExtResource("5_0t2dc")
+
+[node name="3" type="Sprite2D" parent="Camera2D/HealthBar"]
+visible = false
+position = Vector2(-378.5, 88)
+texture = ExtResource("6_nrhpg")
+
+[node name="2" type="Sprite2D" parent="Camera2D/HealthBar"]
+visible = false
+position = Vector2(-378.5, 88)
+texture = ExtResource("7_a077b")
+
+[node name="1" type="Sprite2D" parent="Camera2D/HealthBar"]
+visible = false
+position = Vector2(-378.5, 88)
+texture = ExtResource("8_q463n")
 
 [node name="Walls" type="Node2D" parent="."]
 position = Vector2(-572, -305)
