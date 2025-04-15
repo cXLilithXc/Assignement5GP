@@ -93,9 +93,17 @@ func update_health_bar():
 	# Hide all damage states
 	for i in range(hearts.size()):
 		hearts[i].visible = false
-
-	# Show correct one (only if health is less than 4)
 	if health < 4 and health > 0:
 		var index_to_show = health - 1
 		if index_to_show >= 0 and index_to_show < hearts.size():
 			hearts[index_to_show].visible = true
+
+
+
+
+
+
+func restore_health():
+	health = 4
+	update_health_bar()
+	print("Health restored!")

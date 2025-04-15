@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6idknklacj8v"]
+[gd_scene load_steps=19 format=3 uid="uid://b6idknklacj8v"]
 
 [ext_resource type="Texture2D" uid="uid://beljn1w1haf1q" path="res://Assets/Tile_02.png" id="1_chi5k"]
 [ext_resource type="Texture2D" uid="uid://c2e8rg04pnrhi" path="res://Assets/Free-Mountain-Backgrounds-Pixel-Art9.png" id="2_fa256"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://yax4b6flqnfm" path="res://Assets/third hit.png" id="8_q463n"]
 [ext_resource type="Theme" uid="uid://d213qxnwhb3cj" path="res://Fonts/title_theme.tres" id="10_j6osf"]
 [ext_resource type="Script" uid="uid://kho87xuiw04i" path="res://Scripts/game_over_zone.gd" id="10_kabln"]
+[ext_resource type="PackedScene" uid="uid://bu88b26kcp1pp" path="res://Scenes/health_potion.tscn" id="16_nrhpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6a4y"]
 size = Vector2(32, 1996)
@@ -151,6 +152,10 @@ region_rect = Rect2(0, 0, 2000, 32)
 [node name="MainCharacter" parent="." instance=ExtResource("3_x35cg")]
 position = Vector2(3, 14)
 
+[node name="HealthPotion" parent="MainCharacter" instance=ExtResource("16_nrhpg")]
+visible = false
+position = Vector2(-495, -88)
+
 [node name="RockSpawner" type="Node2D" parent="."]
 position = Vector2(0, -326)
 script = ExtResource("4_6li3k")
@@ -185,5 +190,6 @@ script = ExtResource("10_kabln")
 position = Vector2(-2.5, -310)
 shape = SubResource("RectangleShape2D_tkyk6")
 
+[connection signal="body_entered" from="MainCharacter/HealthPotion" to="MainCharacter/HealthPotion" method="_on_body_entered"]
 [connection signal="timeout" from="RockSpawner/Timer" to="RockSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="GameOverZone" to="GameOverZone" method="_on_body_entered"]

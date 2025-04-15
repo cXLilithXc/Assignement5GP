@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu88b26kcp1pp"]
+
+[ext_resource type="Texture2D" uid="uid://6xqjdv7b2rka" path="res://Assets/redPotionMedium.png" id="1_00e4y"]
+[ext_resource type="Script" uid="uid://xq5ntg4q1qce" path="res://Scenes/health_potion.gd" id="1_x2qfu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x2qfu"]
+radius = 13.0
+height = 32.0
+
+[node name="HealthPotion" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_x2qfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x2qfu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_00e4y")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
