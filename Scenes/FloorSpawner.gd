@@ -4,11 +4,11 @@ extends Node2D
 @onready var right_limit = $FloorLimitRight
 @onready var hard_tiles_node = $"../../HardTiles"
 @onready var floor_spawner_location = $"../FloorSpawnerYPosition"
-
+signal depth_changed(depth_meters: int)
 var floor_tile_scene: PackedScene = preload("res://Scenes/hard_tile.tscn")
 var max_tile_quantity = 300;
 const tile_size = 32
-
+var current_depth: int = 0
 var spawn_next_location: float
 
 # Called when the node enters the scene tree for the first time.
@@ -39,5 +39,7 @@ func spawn_row():
 		hard_tiles_node.add_child(new_tiles[i])
 	
 	spawn_next_location = global_position.y + tile_size
+	current_depth += 3
+	emit_signal("depth_changed", current_depth)
 	
 		
