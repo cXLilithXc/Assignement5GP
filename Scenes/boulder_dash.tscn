@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6idknklacj8v"]
+[gd_scene load_steps=14 format=3 uid="uid://b6idknklacj8v"]
 
 [ext_resource type="Texture2D" uid="uid://beljn1w1haf1q" path="res://Assets/Tile_02.png" id="1_chi5k"]
 [ext_resource type="Texture2D" uid="uid://c2e8rg04pnrhi" path="res://Assets/Free-Mountain-Backgrounds-Pixel-Art9.png" id="2_fa256"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b2yh6uyeyv3ma" path="res://Assets/Tile_30.png" id="4_iqrwy"]
 [ext_resource type="Script" uid="uid://c1vgog3tajosk" path="res://Scenes/Camera2D.gd" id="4_n5s3k"]
 [ext_resource type="Texture2D" uid="uid://k7n7td2fclyg" path="res://Assets/Tile_14.png" id="5_qtvwi"]
+[ext_resource type="Script" uid="uid://dcyeippakttcv" path="res://Scenes/high_score.gd" id="7_7btox"]
 [ext_resource type="Script" uid="uid://dvwouitn2jr0e" path="res://Scenes/FloorSpawner.gd" id="7_qkw54"]
 [ext_resource type="Theme" uid="uid://d213qxnwhb3cj" path="res://Fonts/title_theme.tres" id="10_j6osf"]
 [ext_resource type="Script" uid="uid://kho87xuiw04i" path="res://Scripts/game_over_zone.gd" id="10_kabln"]
@@ -24,6 +25,16 @@ position = Vector2(0, -1)
 zoom = Vector2(1.24, 1.24)
 script = ExtResource("4_n5s3k")
 speed = 15
+
+[node name="HighScore" type="Label" parent="Camera2D"]
+z_index = 20
+offset_left = 252.0
+offset_top = 1.0
+offset_right = 395.0
+offset_bottom = 50.0
+text = "
+"
+script = ExtResource("7_7btox")
 
 [node name="Background" type="Sprite2D" parent="Camera2D"]
 position = Vector2(0, 1)
