@@ -199,7 +199,7 @@ animations = [{
 collision_mask = 3
 script = ExtResource("1_85gfh")
 
-[node name="damage" type="Area2D" parent="."]
+[node name="damage" type="Area2D" parent="." groups=["player"]]
 collision_mask = 8
 
 [node name="TakeDamage" type="CollisionShape2D" parent="damage"]

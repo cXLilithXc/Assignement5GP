@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
 @onready var animatedSprite = $AnimatedSprite2D
-var health := 1
+@onready var health_bar = get_parent().get_node("Camera2D/HealthBar")
+@onready var blink_effect = $hurt
+var health := 4
 var is_invincible := false
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+
+@onready var hearts = [
+	health_bar.get_node("1"),
+	health_bar.get_node("2"),
+	health_bar.get_node("3"),
+]
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_facing_right = true
 signal health_changed(value)
@@ -64,8 +71,8 @@ func _on_damage_body_entered(body: Node2D) -> void:
 func take_damage():
 	if is_invincible:
 		return
-
 	health -= 1
+	update_health_bar()
 	is_invincible = true
 	print("Player took damage! Health: ", health)
 	emit_signal("health_changed", health)
@@ -74,10 +81,31 @@ func take_damage():
 	is_invincible = false
 
 
-
 func blink():
-	for i in range(10):  
-		animatedSprite.visible = false
-		await get_tree().create_timer(0.1).timeout
-		animatedSprite.visible = true
-		await get_tree().create_timer(0.1).timeout
+	print("blink")
+	animatedSprite.visible = false
+	blink_effect.visible = true
+	blink_effect.play("blink")
+	await get_tree().create_timer(3.0).timeout
+	blink_effect.stop()
+	blink_effect.visible = false
+	animatedSprite.visible = true
+
+func update_health_bar():
+	# Hide all damage states
+	for i in range(hearts.size()):
+		hearts[i].visible = false
+	if health < 4 and health > 0:
+		var index_to_show = health - 1
+		if index_to_show >= 0 and index_to_show < hearts.size():
+			hearts[index_to_show].visible = true
+
+
+
+
+
+
+func restore_health():
+	health = 4
+	update_health_bar()
+	print("Health restored!")
